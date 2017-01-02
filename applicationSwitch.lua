@@ -1,4 +1,4 @@
--- Application Swith
+-- Application Switch
 
 
 --------------------------------------------------------
@@ -62,11 +62,21 @@ end)
 --------------------------------------------------------
 
 --------------------------------------------------------
--- Wechat
+-- Atom
 hs.hotkey.bind({"ctrl", "shift"}, "E", function()
   local launch = hs.application.launchOrFocusByBundleID("com.github.atom")
   if not launch then
     hs.alert.show("Vroom cannot launch Atom :(")
+  end
+end)
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- 2Do
+hs.hotkey.bind({"ctrl", "shift"}, "D", function()
+  local launch = hs.application.launchOrFocus("2Do")
+  if not launch then
+    hs.alert.show("Vroom cannot launch 2Do :(")
   end
 end)
 --------------------------------------------------------
