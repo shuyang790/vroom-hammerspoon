@@ -37,9 +37,11 @@ end)
 -- Spotify
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "S", function()
   if hs.spotify.isRunning() then
-    hs.alert.show("Track: " .. hs.spotify.getCurrentTrack())
-    hs.alert.show("Artist: " .. hs.spotify.getCurrentArtist())
-    hs.alert.show("Album: " .. hs.spotify.getCurrentAlbum())
+    hs.alert.show(
+      "Track: " .. hs.spotify.getCurrentTrack() .. "\n"
+      .. "Artist: " .. hs.spotify.getCurrentArtist() .. "\n"
+      .. "Album: " .. hs.spotify.getCurrentAlbum()
+    )
   end
 end)
 --------------------------------------------------------
