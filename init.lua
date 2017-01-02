@@ -1,6 +1,7 @@
 
 require "windowManagement"
 require "applicationSwitch"
+require "pkuGatewayTool"
 
 --------------------------------------------------------
 hs.hotkey.bind({"cmd", "ctrl"}, "A", function()
