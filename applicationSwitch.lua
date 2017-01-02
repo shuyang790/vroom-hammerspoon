@@ -23,7 +23,7 @@ end)
 
 --------------------------------------------------------
 -- Airmail
-hs.hotkey.bind({"ctrl", "shift"}, "A", function()
+hs.hotkey.bind({"ctrl", "shift"}, "M", function()
   local launch = hs.application.launchOrFocus("Airmail 3")
   if not launch then
     hs.alert.show("Vroom cannot launch Airmail 3 :(")
@@ -51,10 +51,30 @@ hs.hotkey.bind({"ctrl", "shift"}, "S", function()
 end)
 --------------------------------------------------------
 
-function findApplicationBundleID()
+--------------------------------------------------------
+-- Wechat
+hs.hotkey.bind({"ctrl", "shift"}, "W", function()
+  local launch = hs.application.launchOrFocusByBundleID("com.tencent.xinWechat")
+  if not launch then
+    hs.alert.show("Vroom cannot launch Wechat :(")
+  end
+end)
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- Wechat
+hs.hotkey.bind({"ctrl", "shift"}, "E", function()
+  local launch = hs.application.launchOrFocusByBundleID("com.github.atom")
+  if not launch then
+    hs.alert.show("Vroom cannot launch Atom :(")
+  end
+end)
+--------------------------------------------------------
+
+function findApplicationBundleID(name)
   local apps = hs.application.runningApplications()
   for k,v in pairs(apps) do
-    if string.find(v:name(), "PATTERN") ~= nil then
+    if string.find(v:name(), name) ~= nil then
       hs.alert(v:bundleID(), 10)
     end
   end

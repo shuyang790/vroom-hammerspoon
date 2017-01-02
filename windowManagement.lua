@@ -4,7 +4,20 @@
 --   2. window full screen CTRL + ALT + RETURN
 --   3. window half screen CTRL + ALT + Left/Right/Up/Down/C
 --   4. window quarter screen CTRL + ALT + U/I/K/J
+--   5. window switch within Space ALT + TAB
 
+
+--------------------------------------------------------
+-- Window Switch within the Space
+switcherInSpace = hs.window.switcher.new(
+  hs.window.filter.new()
+    :setCurrentSpace(true)
+    :setDefaultFilter{}
+) -- include minimized/hidden windows, current Space only
+
+hs.hotkey.bind('alt', 'tab', function()
+  switcherInSpace:next()
+end)
 
 --------------------------------------------------------
 -- Window Movement
@@ -12,32 +25,32 @@ hs.hotkey.bind({"ctrl", "cmd", "alt"}, "H", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
 
-  f.x = f.x - 10
-  win:setFrame(f, 0)
+  f.x = f.x - 30
+  win:setFrame(f)
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "K", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
 
-  f.y = f.y - 10
-  win:setFrame(f, 0)
+  f.y = f.y - 30
+  win:setFrame(f)
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
 
-  f.x = f.x + 10
-  win:setFrame(f, 0)
+  f.x = f.x + 30
+  win:setFrame(f)
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
 
-  f.y = f.y + 10
-  win:setFrame(f, 0)
+  f.y = f.y + 30
+  win:setFrame(f)
 end)
 --------------------------------------------------------
 
