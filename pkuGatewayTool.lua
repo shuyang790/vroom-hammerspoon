@@ -43,11 +43,13 @@ end)
 modal:bind({'ctrl', 'alt', 'cmd'}, 'C', function()
   hs.alert("connecting...")
   connectGateway()
+  modal:exit()
 end)
 
 modal:bind({'ctrl', 'alt', 'cmd'}, 'D', function()
   hs.alert("Disconnecting...")
   disConnectAll()
+  modal:exit()
 end)
 
 function connectGateway()
