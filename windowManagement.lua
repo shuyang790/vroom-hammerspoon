@@ -8,6 +8,36 @@
 
 
 --------------------------------------------------------
+-- Helper: Save Window State
+windowCache = {}
+function saveWindowState(win, f)
+  local id = win:id()
+  if windowCache[id] == nil then
+    windowCache[id] = {}
+    windowCache[id]["x"] = f.x
+    windowCache[id]["y"] = f.y
+    windowCache[id]["w"] = f.w
+    windowCache[id]["h"] = f.h
+  end
+end
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- Window Layout: Resume previous
+hs.hotkey.bind({"alt", "ctrl"}, "delete", function()
+  local win = hs.window.focusedWindow()
+  local id = win:id()
+  local f = win:frame()
+  if windowCache[id] ~= nil then
+    win:setFrame(windowCache[id], 0)
+    windowCache[id] = nil
+  else
+    hs.alert.show("Window not in cache!")
+  end
+end)
+--------------------------------------------------------
+
+--------------------------------------------------------
 -- Window Switch within the Space
 switcherInSpace = hs.window.switcher.new(
   hs.window.filter.new()
@@ -62,6 +92,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "return", function()
   local screen = win:screen()
   local max = screen:frame()
 
+  saveWindowState(win, f)
   f.x = max.x
   f.y = max.y
   f.w = max.w
@@ -77,6 +108,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "Left", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x
   f.y = max.y
@@ -90,6 +122,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "Right", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x + (max.w / 2)
   f.y = max.y
@@ -103,6 +136,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "Up", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x
   f.y = max.y
@@ -116,6 +150,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "Down", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x
   f.y = max.y + (max.h / 2)
@@ -129,11 +164,12 @@ hs.hotkey.bind({"alt", "ctrl"}, "C", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
-  f.x = max.x + (max.w / 8)
-  f.y = max.y + (max.h / 8)
-  f.w = max.w * 0.75
-  f.h = max.h * 0.75
+  f.x = max.x + (max.w / 10)
+  f.y = max.y + (max.h / 10)
+  f.w = max.w * 0.8
+  f.h = max.h * 0.8
   win:setFrame(f, 0)
 end)
 --------------------------------------------------------
@@ -145,6 +181,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "I", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x + (max.w / 2)
   f.y = max.y
@@ -158,6 +195,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "U", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x
   f.y = max.y
@@ -171,6 +209,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "K", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x + (max.w / 2)
   f.y = max.y + (max.h / 2)
@@ -184,6 +223,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "J", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  saveWindowState(win, f)
 
   f.x = max.x
   f.y = max.y + (max.h / 2)
