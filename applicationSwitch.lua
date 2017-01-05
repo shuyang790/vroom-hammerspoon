@@ -1,86 +1,68 @@
 -- Application Switch
 
-
 --------------------------------------------------------
+-- Template
+function switchToAppByName(name)
+  return function()
+    local launch = hs.application.launchOrFocus(name)
+    if not launch then
+      hs.alert.show("Vroom cannot launch " .. name .. " :(")
+    end
+  end
+end
+
+function switchToAppByBundleID(bundleID)
+  return function()
+    local launch = hs.application.launchOrFocusByBundleID(bundleID)
+    if not launch then
+      hs.alert.show("Vroom cannot launch " .. bundleID .. " :(")
+    end
+  end
+end
+--------------------------------------------------------
+
 -- iTerm
-hs.hotkey.bind({"ctrl", "shift"}, "T", function()
-  local launch = hs.application.launchOrFocus("iTerm")
-  if not launch then
-    hs.alert.show("Vroom cannot launch iTerm :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "T",
+  switchToAppByName("iTerm")
+)
 
---------------------------------------------------------
 -- IntelliJ Idea
-hs.hotkey.bind({"ctrl", "shift"}, "I", function()
-  local launch = hs.application.launchOrFocusByBundleID("com.jetbrains.intellij")
-  if not launch then
-    hs.alert.show("Vroom cannot launch IntelliJ IDEA :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "I",
+  switchToAppByName("IntelliJ IDEA")
+)
 
---------------------------------------------------------
--- Airmail
-hs.hotkey.bind({"ctrl", "shift"}, "M", function()
-  local launch = hs.application.launchOrFocus("Airmail 3")
-  if not launch then
-    hs.alert.show("Vroom cannot launch Airmail 3 :(")
-  end
-end)
---------------------------------------------------------
+-- Email
+hs.hotkey.bind({"ctrl", "shift"}, "M",
+  switchToAppByName("Airmail 3")
+)
 
---------------------------------------------------------
 -- Firefox
-hs.hotkey.bind({"ctrl", "shift"}, "F", function()
-  local launch = hs.application.launchOrFocusByBundleID("org.mozilla.firefox")
-  if not launch then
-    hs.alert.show("Vroom cannot launch Firefox :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "F",
+  switchToAppByBundleID("org.mozilla.firefox")
+)
 
---------------------------------------------------------
 -- Spotify
-hs.hotkey.bind({"ctrl", "shift"}, "S", function()
-  local launch = hs.application.launchOrFocusByBundleID("com.spotify.client")
-  if not launch then
-    hs.alert.show("Vroom cannot launch Spotify :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "S",
+  switchToAppByBundleID("com.spotify.client")
+)
 
---------------------------------------------------------
 -- Wechat
-hs.hotkey.bind({"ctrl", "shift"}, "W", function()
-  local launch = hs.application.launchOrFocusByBundleID("com.tencent.xinWechat")
-  if not launch then
-    hs.alert.show("Vroom cannot launch Wechat :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "W",
+  switchToAppByBundleID("com.tencent.xinWechat")
+)
 
---------------------------------------------------------
 -- Atom
-hs.hotkey.bind({"ctrl", "shift"}, "E", function()
-  local launch = hs.application.launchOrFocusByBundleID("com.github.atom")
-  if not launch then
-    hs.alert.show("Vroom cannot launch Atom :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "E",
+  switchToAppByBundleID("com.github.atom")
+)
 
---------------------------------------------------------
 -- 2Do
-hs.hotkey.bind({"ctrl", "shift"}, "D", function()
-  local launch = hs.application.launchOrFocus("2Do")
-  if not launch then
-    hs.alert.show("Vroom cannot launch 2Do :(")
-  end
-end)
---------------------------------------------------------
+hs.hotkey.bind({"ctrl", "shift"}, "D",
+  switchToAppByName("2Do")
+)
 
+--------------------------------------------------------
+-- Helper
 function findApplicationBundleID(name)
   local apps = hs.application.runningApplications()
   for k,v in pairs(apps) do
