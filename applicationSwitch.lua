@@ -1,5 +1,24 @@
 -- Application Switch
 
+
+--------------------------------------------------------
+-- Window Hints
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "E", function()
+  hs.hints.hintChars = {
+    "E", "D", "C",
+    "R", "F", "V",
+    "Y", "H", "N",
+    "U", "J", "M",
+    "A", "S",
+    "K", "L"
+  }
+  hs.hints.windowHints(
+    hs.window.filter.new()
+      :getWindows()
+  )
+end)
+--------------------------------------------------------
+
 --------------------------------------------------------
 -- Template
 function switchToAppByName(name)
