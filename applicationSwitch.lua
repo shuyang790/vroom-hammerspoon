@@ -33,7 +33,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  switchToAppByName("Airmail 3")
+  switchToAppByName("Thunderbird")
 )
 
 -- Firefox
@@ -52,8 +52,13 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
 )
 
 -- Atom
+hs.hotkey.bind({"ctrl", "shift"}, "A",
+  switchToAppByName("Atom")
+)
+
+-- Evernote
 hs.hotkey.bind({"ctrl", "shift"}, "E",
-  switchToAppByBundleID("com.github.atom")
+  switchToAppByBundleID("com.evernote.Evernote")
 )
 
 -- 2Do
