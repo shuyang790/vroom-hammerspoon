@@ -85,6 +85,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "D",
   switchToAppByName("2Do")
 )
 
+-- Fantastical 2
+hs.hotkey.bind({"ctrl", "shift"}, "C",
+  switchToAppByName("Fantastical 2")
+)
+
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)
