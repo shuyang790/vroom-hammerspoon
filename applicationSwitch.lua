@@ -90,6 +90,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "C",
   switchToAppByName("Fantastical 2")
 )
 
+-- Outlook
+hs.hotkey.bind({"ctrl", "shift"}, "O",
+  switchToAppByBundleID("com.microsoft.Outlook")
+)
+
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)
