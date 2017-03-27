@@ -42,7 +42,7 @@ end
 
 -- iTerm
 hs.hotkey.bind({"ctrl", "shift"}, "T",
-  switchToAppByName("iTerm")
+  switchToAppByBundleID("com.googlecode.iterm2")
 )
 
 -- IntelliJ Idea
