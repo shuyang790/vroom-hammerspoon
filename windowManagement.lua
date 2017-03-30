@@ -1,11 +1,12 @@
 -- Window Management
 --   which includes
---   1. window movement CTRL + CMD + ALT + H/J/K/L
---   2. window full screen CTRL + ALT + RETURN
---   3. window half screen CTRL + ALT + Left/Right/Up/Down/C
---   4. window quarter screen CTRL + ALT + U/I/K/J
---   5. window switch within Space ALT + TAB
---   *6. move to another space CTRL + ALT + Left/Right
+--   - window movement CTRL + ALT + CMD + H/J/K/L
+--   - window size adjustment CTRL + SHIFT + ALT + H/J/K/L
+--   - window full screen CTRL + ALT + RETURN
+--   - window half screen CTRL + ALT + Left/Right/Up/Down/C
+--   - window quarter screen CTRL + ALT + U/I/J/K 
+--   - window switch within Space ALT + TAB
+--   - (*) move to another space CTRL + ALT + Left/Right
 
 
 --------------------------------------------------------
@@ -81,6 +82,41 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
   local f = win:frame()
 
   f.y = f.y + 30
+  win:setFrame(f)
+end)
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- Window Size Adjustment
+hs.hotkey.bind({"shift", "alt", "ctrl"}, "H", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.w = f.w - 30
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl"}, "K", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.h = f.h - 30
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl"}, "L", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.w = f.w + 30
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl"}, "J", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.h = f.h + 30
   win:setFrame(f)
 end)
 --------------------------------------------------------
@@ -234,7 +270,7 @@ hs.hotkey.bind({"alt", "ctrl"}, "J", function()
 end)
 --------------------------------------------------------
 
--- credit for 
+-- credit for
 -- https://github.com/Hammerspoon/hammerspoon/issues/235
 --
 function moveWindowOneSpace(direction)
@@ -268,4 +304,3 @@ hk1 = hs.hotkey.bind({"cmd", "ctrl", "alt"}, "right",
    function() moveWindowOneSpace("right") end)
 hk2 = hs.hotkey.bind({"cmd", "ctrl", "alt"}, "left",
    function() moveWindowOneSpace("left") end)
-
