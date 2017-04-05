@@ -90,11 +90,29 @@ hs.hotkey.bind({"ctrl", "shift"}, "C",
   switchToAppByName("Fantastical 2")
 )
 
+hs.hotkey.bind({"ctrl", "shift"}, "G",
+  switchToAppByBundleID("com.fluidapp.FluidApp.Google Calendar")
+)
+
 -- Outlook
 hs.hotkey.bind({"ctrl", "shift"}, "O",
   switchToAppByBundleID("com.microsoft.Outlook")
 )
 
+-- Quip
+hs.hotkey.bind({"ctrl", "shift"}, "Q",
+  switchToAppByBundleID("com.quip.Desktop")
+)
+
+-- Safari
+hs.hotkey.bind({"ctrl", "shift"}, "B",
+  switchToAppByBundleID("com.apple.safari")
+)
+
+-- uTorrent
+hs.hotkey.bind({"ctrl", "shift"}, "U",
+  switchToAppByBundleID("com.bittorrent.uTorrent")
+)
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)
