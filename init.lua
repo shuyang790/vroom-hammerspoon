@@ -1,7 +1,6 @@
 
 require "windowManagement"
 require "applicationSwitch"
-require "pkuGatewayTool"
 
 --------------------------------------------------------
 hs.hotkey.bind({"cmd", "ctrl"}, "A", function()
@@ -46,3 +45,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "S", function()
   end
 end)
 --------------------------------------------------------
+
+hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "L", function()
+  hs.caffeinate.lockScreen()
+end)

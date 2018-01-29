@@ -104,15 +104,27 @@ hs.hotkey.bind({"ctrl", "shift"}, "Q",
   switchToAppByBundleID("com.quip.Desktop")
 )
 
--- Safari
+-- Browser
 hs.hotkey.bind({"ctrl", "shift"}, "B",
-  switchToAppByBundleID("com.apple.safari")
+  -- switchToAppByBundleID("com.google.chrome")
+  switchToAppByBundleID("com.operasoftware.Opera")
+)
+
+-- Vivaldi Browser
+hs.hotkey.bind({"ctrl", "shift"}, "V",
+  switchToAppByBundleID("com.vivaldi.Vivaldi")
 )
 
 -- uTorrent
 hs.hotkey.bind({"ctrl", "shift"}, "U",
   switchToAppByBundleID("com.bittorrent.uTorrent")
 )
+
+-- Google Play Music Desktop Player
+hs.hotkey.bind({"ctrl", "shift"}, "p",
+  switchToAppByBundleID("google-play-music-desktop-player")
+)
+
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)
@@ -123,3 +135,4 @@ function findApplicationBundleID(name)
     end
   end
 end
+
