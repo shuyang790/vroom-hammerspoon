@@ -52,7 +52,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  switchToAppByName("Thunderbird")
+  -- switchToAppByName("Thunderbird")
+  switchToAppByName("Airmail 3")
 )
 
 -- Firefox
@@ -64,6 +65,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "F",
 hs.hotkey.bind({"ctrl", "shift"}, "S",
   switchToAppByBundleID("com.spotify.client")
 )
+
+-- Todoist 
+-- hs.hotkey.bind({"ctrl", "shift"}, "Y",
+--   switchToAppByName("todoist")
+-- )
 
 -- Wechat
 hs.hotkey.bind({"ctrl", "shift"}, "W",
@@ -80,13 +86,15 @@ hs.hotkey.bind({"ctrl", "shift"}, "E",
   switchToAppByBundleID("com.evernote.Evernote")
 )
 
--- 2Do
+-- 2Do / Microsoft To-Do
 hs.hotkey.bind({"ctrl", "shift"}, "D",
+  -- switchToAppByName("To-Do")
   switchToAppByName("2Do")
 )
 
--- Fantastical 2
+-- Fantastical 2 / Calendar
 hs.hotkey.bind({"ctrl", "shift"}, "C",
+  -- switchToAppByName("Calendar")
   switchToAppByName("Fantastical 2")
 )
 
@@ -106,8 +114,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "Q",
 
 -- Browser
 hs.hotkey.bind({"ctrl", "shift"}, "B",
-  -- switchToAppByBundleID("com.google.chrome")
-  switchToAppByBundleID("com.operasoftware.Opera")
+  switchToAppByBundleID("com.google.chrome")
+  -- switchToAppByBundleID("com.operasoftware.Opera")
 )
 
 -- Vivaldi Browser
