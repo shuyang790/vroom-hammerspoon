@@ -47,13 +47,13 @@ hs.hotkey.bind({"ctrl", "shift"}, "T",
 
 -- IntelliJ Idea
 hs.hotkey.bind({"ctrl", "shift"}, "I",
-  switchToAppByName("IntelliJ IDEA")
+  switchToAppByName("IntelliJ IDEA CE")
 )
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  -- switchToAppByName("Thunderbird")
-  switchToAppByName("Airmail 3")
+  switchToAppByName("Thunderbird")
+  -- switchToAppByName("Airmail 3")
 )
 
 -- Firefox
@@ -76,9 +76,9 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
   switchToAppByBundleID("com.tencent.xinWechat")
 )
 
--- Atom
+-- Atom / VS Code
 hs.hotkey.bind({"ctrl", "shift"}, "A",
-  switchToAppByName("Atom")
+  switchToAppByName("VS Code @ FB - Insiders")
 )
 
 -- Evernote
@@ -86,9 +86,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "E",
   switchToAppByBundleID("com.evernote.Evernote")
 )
 
--- 2Do / Microsoft To-Do
+-- 2Do
 hs.hotkey.bind({"ctrl", "shift"}, "D",
-  -- switchToAppByName("To-Do")
   switchToAppByName("2Do")
 )
 
@@ -99,7 +98,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "C",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "G",
-  switchToAppByBundleID("com.fluidapp.FluidApp.Google Calendar")
+  switchToAppByBundleID("com.google.chrome")
+  -- switchToAppByBundleID("com.fluidapp.FluidApp.Google Calendar")
 )
 
 -- Outlook
@@ -114,13 +114,14 @@ hs.hotkey.bind({"ctrl", "shift"}, "Q",
 
 -- Browser
 hs.hotkey.bind({"ctrl", "shift"}, "B",
-  switchToAppByBundleID("com.google.chrome")
+  switchToAppByName("Safari")
   -- switchToAppByBundleID("com.operasoftware.Opera")
 )
 
--- Vivaldi Browser
+-- Vivaldi Browser / VS Code
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  switchToAppByBundleID("com.vivaldi.Vivaldi")
+  -- switchToAppByBundleID("com.vivaldi.Vivaldi")
+  switchToAppByName("Visual Studio Code")
 )
 
 -- uTorrent
@@ -128,9 +129,14 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
   switchToAppByBundleID("com.bittorrent.uTorrent")
 )
 
--- Google Play Music Desktop Player
-hs.hotkey.bind({"ctrl", "shift"}, "p",
-  switchToAppByBundleID("google-play-music-desktop-player")
+-- Microsoft To-Do 
+hs.hotkey.bind({"ctrl", "shift"}, "P",
+  switchToAppByName("Microsoft To-Do")
+)
+
+-- OneNote 
+hs.hotkey.bind({"ctrl", "shift"}, "N",
+  switchToAppByName("Microsoft OneNote")
 )
 
 --------------------------------------------------------
