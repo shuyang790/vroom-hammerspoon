@@ -58,6 +58,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "M",
 
 -- Firefox
 hs.hotkey.bind({"ctrl", "shift"}, "F",
+  -- switchToAppByName("Firefox Developer Edition")
   switchToAppByBundleID("org.mozilla.firefox")
 )
 
@@ -78,7 +79,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
 
 -- Atom / VS Code
 hs.hotkey.bind({"ctrl", "shift"}, "A",
-  switchToAppByName("VS Code @ FB - Insiders")
+  switchToAppByName("VS Code @ FB")
 )
 
 -- Evernote
@@ -107,11 +108,6 @@ hs.hotkey.bind({"ctrl", "shift"}, "O",
   switchToAppByBundleID("com.microsoft.Outlook")
 )
 
--- Quip
-hs.hotkey.bind({"ctrl", "shift"}, "Q",
-  switchToAppByBundleID("com.quip.Desktop")
-)
-
 -- Browser
 hs.hotkey.bind({"ctrl", "shift"}, "B",
   switchToAppByName("Safari")
@@ -120,8 +116,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "B",
 
 -- Vivaldi Browser / VS Code
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  -- switchToAppByBundleID("com.vivaldi.Vivaldi")
-  switchToAppByName("Visual Studio Code")
+  switchToAppByBundleID("com.vivaldi.Vivaldi")
+  -- switchToAppByName("Visual Studio Code")
 )
 
 -- uTorrent
@@ -129,9 +125,17 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
   switchToAppByBundleID("com.bittorrent.uTorrent")
 )
 
--- Microsoft To-Do 
-hs.hotkey.bind({"ctrl", "shift"}, "P",
-  switchToAppByName("Microsoft To-Do")
+hs.hotkey.bind({"ctrl", "shift"}, "P", function()
+  hs.mjomatic.go({
+  "VVVVVVVVVVVVViiiiiiiiiii      # <-- The windowgram, it defines the shapes and positions of windows",
+  "VVVVVVVVVVVVViiiiiiiiiii",
+  "VVVVVVVVVVVVViiiiiiiiiii",
+  "VVVVVVVVVVVVViiiiiiiiiii",
+  "VVVVVVVVVVVVViiiiiiiiiii",
+  "",
+  "V Vivaldi",
+  "i iTerm2"})
+end
 )
 
 -- OneNote 

@@ -6,7 +6,6 @@
 --   - window half screen CTRL + ALT + Left/Right/Up/Down/C
 --   - window quarter screen CTRL + ALT + U/I/J/K 
 --   - window switch within Space ALT + TAB
---   - (*) move to another space CTRL + ALT + Left/Right
 
 
 --------------------------------------------------------
@@ -269,38 +268,3 @@ hs.hotkey.bind({"alt", "ctrl"}, "J", function()
   win:setFrame(f, 0)
 end)
 --------------------------------------------------------
-
--- credit for
--- https://github.com/Hammerspoon/hammerspoon/issues/235
---
-function moveWindowOneSpace(direction)
-   local mouseOrigin = hs.mouse.getAbsolutePosition()
-   local win = hs.window.focusedWindow()
-   local clickPoint = win:zoomButtonRect()
-
-   clickPoint.x = clickPoint.x + clickPoint.w + 5
-   clickPoint.y = clickPoint.y + (clickPoint.h / 2)
-
-   local mouseClickEvent = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftmousedown, clickPoint)
-   mouseClickEvent:post()
-   hs.timer.usleep(150000)
-
-   local nextSpaceDownEvent = hs.eventtap.event.newKeyEvent({"ctrl"}, direction, true)
-   nextSpaceDownEvent:post()
-   hs.timer.usleep(150000)
-
-   local nextSpaceUpEvent = hs.eventtap.event.newKeyEvent({"ctrl"}, direction, false)
-   nextSpaceUpEvent:post()
-   hs.timer.usleep(150000)
-
-   local mouseReleaseEvent = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftmouseup, clickPoint)
-   mouseReleaseEvent:post()
-   hs.timer.usleep(150000)
-
-   hs.mouse.setAbsolutePosition(mouseOrigin)
-end
-
-hk1 = hs.hotkey.bind({"cmd", "ctrl", "alt"}, "right",
-   function() moveWindowOneSpace("right") end)
-hk2 = hs.hotkey.bind({"cmd", "ctrl", "alt"}, "left",
-   function() moveWindowOneSpace("left") end)
