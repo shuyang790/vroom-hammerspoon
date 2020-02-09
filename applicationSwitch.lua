@@ -52,6 +52,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
+  -- switchToAppByName("Mail")
   switchToAppByName("Thunderbird")
   -- switchToAppByName("Airmail 3")
 )
@@ -67,10 +68,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "S",
   switchToAppByBundleID("com.spotify.client")
 )
 
--- Todoist 
--- hs.hotkey.bind({"ctrl", "shift"}, "Y",
---   switchToAppByName("todoist")
--- )
+-- Microsoft To Do / Todoist 
+hs.hotkey.bind({"ctrl", "shift"}, "Y",
+  switchToAppByName("Microsoft To Do")
+  -- switchToAppByName("todoist")
+)
 
 -- Wechat
 hs.hotkey.bind({"ctrl", "shift"}, "W",
@@ -92,10 +94,16 @@ hs.hotkey.bind({"ctrl", "shift"}, "D",
   switchToAppByName("2Do")
 )
 
--- Fantastical 2 / Calendar
+
+-- Reminders
+hs.hotkey.bind({"ctrl", "shift"}, "R",
+  switchToAppByName("Reminders")
+)
+
+-- Fantastical / Calendar
 hs.hotkey.bind({"ctrl", "shift"}, "C",
-  -- switchToAppByName("Calendar")
-  switchToAppByName("Fantastical 2")
+  switchToAppByName("Calendar")
+  -- switchToAppByName("Fantastical")
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "G",

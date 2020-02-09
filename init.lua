@@ -5,7 +5,7 @@ require "applicationSwitch"
 require "layoutManagement"
 
 --------------------------------------------------------
-hs.hotkey.bind({"cmd", "ctrl"}, "A", function()
+hs.hotkey.bind({"cmd", "shift", "ctrl"}, "A", function()
   hs.alert.show("Hello! My name is Vroom :)")
   hs.notify.new({title="Vroom", informativeText="Hello, my friend! :)"})
     :send()
