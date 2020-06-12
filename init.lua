@@ -51,3 +51,17 @@ end)
 hs.hotkey.bind({"cmd", "shift", "ctrl"}, "Q", function()
   hs.caffeinate.lockScreen()
 end)
+
+--------------------------------------------------------
+hs.timer.doEvery(60 * 60 * 24, function()
+  hs.osascript.applescript(
+    'tell application "Evernote"' .. "\n"
+    .. '  set matches to find notes "notebook:fb-Local"' .. "\n"
+    .. '  set htmlPath to "/Volumes/GoogleDrive/My Drive/backup/fb-local-html-" & (current date)' .. "\n"
+    .. '  set enexPath to "/Volumes/GoogleDrive/My Drive/backup/fb-local-enex-" & (current date)' .. "\n"
+    .. '  export matches to htmlPath format HTML' .. "\n"
+    .. '  export matches to enexPath format ENEX' .. "\n"
+    .. 'end tell' .. "\n"
+  )
+  hs.alert.show("Evernote Local Notebook Backed up")
+end)
