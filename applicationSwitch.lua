@@ -52,8 +52,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  -- switchToAppByName("Mail")
-  switchToAppByName("Thunderbird")
+  switchToAppByName("Spark")
+  -- switchToAppByName("Thunderbird")
   -- switchToAppByName("Airmail 3")
 )
 
@@ -70,8 +70,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "S",
 
 -- Microsoft To Do / Todoist 
 hs.hotkey.bind({"ctrl", "shift"}, "Y",
-  switchToAppByName("Microsoft To Do")
-  -- switchToAppByName("todoist")
+  -- switchToAppByName("Microsoft To Do")
+  switchToAppByName("todoist")
 )
 
 -- Wechat
@@ -133,22 +133,17 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
   switchToAppByBundleID("com.bittorrent.uTorrent")
 )
 
-hs.hotkey.bind({"ctrl", "shift"}, "P", function()
-  hs.mjomatic.go({
-  "VVVVVVVVVVVVViiiiiiiiiii      # <-- The windowgram, it defines the shapes and positions of windows",
-  "VVVVVVVVVVVVViiiiiiiiiii",
-  "VVVVVVVVVVVVViiiiiiiiiii",
-  "VVVVVVVVVVVVViiiiiiiiiii",
-  "VVVVVVVVVVVVViiiiiiiiiii",
-  "",
-  "V Vivaldi",
-  "i iTerm2"})
-end
+
+hs.hotkey.bind({"ctrl", "shift"}, "P",
+  switchToAppByName("Music.app")
+  -- switchToAppByName("YTM.app")
+  -- switchToAppByName("Youtube Music.app")
 )
 
--- OneNote 
+-- OmniFocus
 hs.hotkey.bind({"ctrl", "shift"}, "N",
-  switchToAppByName("Microsoft OneNote")
+  switchToAppByName("OmniFocus")
+  -- switchToAppByName("Microsoft OneNote")
 )
 
 --------------------------------------------------------
