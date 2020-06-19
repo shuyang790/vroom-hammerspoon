@@ -53,7 +53,7 @@ hs.hotkey.bind({"cmd", "shift", "ctrl"}, "Q", function()
 end)
 
 --------------------------------------------------------
-hs.timer.doEvery(60 * 60 * 24, function()
+evernote_backup_timer = hs.timer.new(60 * 60 * 24, function()
   hs.osascript.applescript(
     'tell application "Evernote"' .. "\n"
     .. '  set matches to find notes "notebook:fb-Local"' .. "\n"
@@ -65,3 +65,4 @@ hs.timer.doEvery(60 * 60 * 24, function()
   )
   hs.alert.show("Evernote Local Notebook Backed up")
 end)
+evernote_backup_timer:start()
