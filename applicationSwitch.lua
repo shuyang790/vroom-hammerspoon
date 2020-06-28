@@ -102,8 +102,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "R",
 
 -- Fantastical / Calendar
 hs.hotkey.bind({"ctrl", "shift"}, "C",
-  switchToAppByName("Calendar")
-  -- switchToAppByName("Fantastical")
+  -- switchToAppByName("Calendar")
+  switchToAppByName("Fantastical")
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "G",

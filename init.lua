@@ -53,6 +53,7 @@ hs.hotkey.bind({"cmd", "shift", "ctrl"}, "Q", function()
 end)
 
 --------------------------------------------------------
+-- Evernote notebook backup
 evernote_backup_timer = hs.timer.new(60 * 60 * 24, function()
   hs.osascript.applescript(
     'tell application "Evernote"' .. "\n"
@@ -65,4 +66,16 @@ evernote_backup_timer = hs.timer.new(60 * 60 * 24, function()
   )
   hs.alert.show("Evernote Local Notebook Backed up")
 end)
-evernote_backup_timer:start()
+-- evernote_backup_timer:start()
+
+--------------------------------------------------------
+-- Clipboard Tool (text only)
+clipboardTool = hs.loadSpoon("ClipboardTool")
+clipboardTool.paste_on_select = true
+clipboardTool.hist_size = 200
+clipboardTool:bindHotkeys({
+  show_clipboard={{"cmd", "shift"}, "V"},
+  toggle_clipboard={{"cmd", "shift"}, "V"}
+})
+clipboardTool:start()
+
