@@ -41,6 +41,22 @@ function obj:restoreOutput()
     local function openWithChrome(arg)
         hs.urlevent.openURLWithBundle(arg, "com.google.Chrome")
     end
+    local function focusTabInChrome(arg) 
+        hs.osascript.javascript([[
+            (function() {
+                var chrome = Application('Google Chrome');
+                chrome.activate();
+                for (win of chrome.windows()) {
+                  var tabIndex =
+                    win.tabs().findIndex(tab => tab.url() == "]] .. arg .. [[");
+                  if (tabIndex != -1) {
+                    win.activeTabIndex = (tabIndex + 1);
+                    win.index = 1;
+                  }
+                }
+            })();
+        ]])
+    end
     local function openWithFirefox(arg)
         hs.urlevent.openURLWithBundle(arg, "org.mozilla.firefox")
     end
@@ -58,6 +74,7 @@ function obj:restoreOutput()
     obj.output_pool["firefox"] = openWithFirefox
     obj.output_pool["clipboard"] = copyToClipboard
     obj.output_pool["keystrokes"] = sendKeyStrokes
+    obj.output_pool["chromefocus"] = focusTabInChrome
 end
 
 function obj:init()
