@@ -104,7 +104,7 @@ obj.prevFocusedWindow = nil
 obj.timer = nil
 
 local pasteboard = require("hs.pasteboard") -- http://www.hammerspoon.org/docs/hs.pasteboard.html
-local hashfn   = require("hs.hash").MD5
+local hashfn   = require("hs.hash").SHA1
 
 -- Keep track of last change counter
 local last_change = nil;
@@ -350,7 +350,7 @@ function obj:checkAndStorePasteboard()
    if (now > last_change) then
       if (not self.honor_ignoredidentifiers) or self:shouldBeStored() then
          current_clipboard = pasteboard.getContents()
-         self.logger.df("current_clipboard = %s", tostring(current_clipboard))
+         self.logger.df("current_clipboard = (hashed) %s", hashfn(tostring(current_clipboard)))
          if (current_clipboard == nil) and (pasteboard.readImage() ~= nil) then
             self.logger.df("Images not yet supported - ignoring image contents in clipboard")
          elseif current_clipboard ~= nil then
@@ -364,7 +364,7 @@ function obj:checkAndStorePasteboard()
                 end
             end
             hs.alert.show("Copied " .. size .. " chars")
-            self.logger.df("Adding %s to clipboard history", current_clipboard)
+            self.logger.df("Adding (hashed) %s to clipboard history", hashfn(current_clipboard))
             self:pasteboardToClipboard(current_clipboard)
          else
             self.logger.df("Ignoring nil clipboard content")
