@@ -79,3 +79,10 @@ clipboardTool:bindHotkeys({
 })
 clipboardTool:start()
 
+--------------------------------------------------------
+-- HSearch 
+hSearch = hs.loadSpoon("HSearch")
+hSearch:loadSources()
+hs.hotkey.bind("alt", "space", function()
+  hSearch:toggleShow()
+end)
