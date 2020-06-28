@@ -104,7 +104,7 @@ obj.prevFocusedWindow = nil
 obj.timer = nil
 
 local pasteboard = require("hs.pasteboard") -- http://www.hammerspoon.org/docs/hs.pasteboard.html
-local hashfn   = require("hs.hash").SHA1
+local hashfn   = require("hs.hash").MD5
 
 -- Keep track of last change counter
 local last_change = nil;
@@ -146,10 +146,10 @@ function obj:_processSelectedItem(value)
       elseif value.text then
          if value.subText == "text" then 
             item = value.text
-            pasteboard.setContents(value.subText, item)
+            pasteboard.setContents(item)
          elseif value.subText == "image" then
             item = hs.image.imageFromURL(value.text)
-            pasteboard.writeObjects(value.subText, item)
+            pasteboard.writeObjects(item)
          end
          if (self.paste_on_select) then
             hs.eventtap.keyStroke({"cmd"}, "v")
