@@ -26,7 +26,7 @@ local function browserTabsRequest()
         -- Notice `output` key and its `arg`. The built-in output contains `browser`, `safari`, `chrome`, `firefon`, `clipboard`, `keystrokes`. You can define new output type if you like.
         if stat then
             chooser_data = hs.fnutils.imap(data, function(item)
-                return {text=item[1], subText=item[2], image=hs.image.imageFromPath(obj.spoonPath .. "/resources/safari.png"), output="safari", arg=item[2]}
+                return {text=item[1], subText=item[2], image=hs.image.imageFromPath(obj.spoonPath .. "/resources/safari.png"), output="safarifocus", arg=item[2]}
             end)
         end
     end
