@@ -28,7 +28,6 @@ local function updateOptions(queryStr)
     local chooser_data = {}
     local browsers = {"firefox", "chrome", "safari"}
     for idx,browser in ipairs(browsers) do 
-        -- TODO: use bunny url
         table.insert(chooser_data, {text="(" .. browser .. ") Bunny: " .. queryStr, subText=browser, output=browser, arg="https://bunnylol.facebook.net/?" .. queryStr})
     end
     if spoon.HSearch then 
