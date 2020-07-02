@@ -1,3 +1,3 @@
 # Vroom-hammerspoon
 
-Hammerspoon configurations
+Hammerspoon configurations (`~/.hammerspoon`)

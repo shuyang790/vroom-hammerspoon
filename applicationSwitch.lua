@@ -12,6 +12,8 @@ hs.hotkey.bind({"ctrl", "alt", "cmd"}, "E", function()
     "A", "S",
     "K", "L"
   }
+  hs.hints.showTitleThresh = 10
+  hs.hints.style = "vimperator"
   hs.hints.windowHints(
     hs.window.filter.new()
       :getWindows()
@@ -40,9 +42,42 @@ function switchToAppByBundleID(bundleID)
 end
 --------------------------------------------------------
 
--- iTerm
-hs.hotkey.bind({"ctrl", "shift"}, "T",
-  switchToAppByBundleID("com.googlecode.iterm2")
+-- Atom / VS Code
+hs.hotkey.bind({"ctrl", "shift"}, "A",
+  switchToAppByName("VS Code @ FB")
+)
+
+-- Browser
+hs.hotkey.bind({"ctrl", "shift"}, "B",
+  switchToAppByName("Safari")
+  -- switchToAppByBundleID("com.operasoftware.Opera")
+)
+
+-- Fantastical / Calendar
+hs.hotkey.bind({"ctrl", "shift"}, "C",
+  -- switchToAppByName("Calendar")
+  switchToAppByName("Fantastical")
+)
+
+-- 2Do
+hs.hotkey.bind({"ctrl", "shift"}, "D",
+  switchToAppByName("2Do")
+)
+
+-- Evernote
+hs.hotkey.bind({"ctrl", "shift"}, "E",
+  switchToAppByBundleID("com.evernote.Evernote")
+)
+
+-- Firefox
+hs.hotkey.bind({"ctrl", "shift"}, "F",
+  -- switchToAppByName("Firefox Developer Edition")
+  switchToAppByBundleID("org.mozilla.firefox")
+)
+
+-- Chrome
+hs.hotkey.bind({"ctrl", "shift"}, "G",
+  switchToAppByBundleID("com.google.chrome")
 )
 
 -- IntelliJ Idea
@@ -54,61 +89,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 hs.hotkey.bind({"ctrl", "shift"}, "M",
   switchToAppByName("Spark")
   -- switchToAppByName("Thunderbird")
-  -- switchToAppByName("Airmail 3")
 )
 
--- Firefox
-hs.hotkey.bind({"ctrl", "shift"}, "F",
-  -- switchToAppByName("Firefox Developer Edition")
-  switchToAppByBundleID("org.mozilla.firefox")
-)
-
--- Spotify
-hs.hotkey.bind({"ctrl", "shift"}, "S",
-  switchToAppByBundleID("com.spotify.client")
-)
-
--- Microsoft To Do / Todoist 
-hs.hotkey.bind({"ctrl", "shift"}, "Y",
-  -- switchToAppByName("Microsoft To Do")
-  switchToAppByName("todoist")
-)
-
--- Wechat
-hs.hotkey.bind({"ctrl", "shift"}, "W",
-  switchToAppByBundleID("com.tencent.xinWechat")
-)
-
--- Atom / VS Code
-hs.hotkey.bind({"ctrl", "shift"}, "A",
-  switchToAppByName("VS Code @ FB")
-)
-
--- Evernote
-hs.hotkey.bind({"ctrl", "shift"}, "E",
-  switchToAppByBundleID("com.evernote.Evernote")
-)
-
--- 2Do
-hs.hotkey.bind({"ctrl", "shift"}, "D",
-  switchToAppByName("2Do")
-)
-
-
--- Reminders
-hs.hotkey.bind({"ctrl", "shift"}, "R",
-  switchToAppByName("Reminders")
-)
-
--- Fantastical / Calendar
-hs.hotkey.bind({"ctrl", "shift"}, "C",
-  -- switchToAppByName("Calendar")
-  switchToAppByName("Fantastical")
-)
-
-hs.hotkey.bind({"ctrl", "shift"}, "G",
-  switchToAppByBundleID("com.google.chrome")
-  -- switchToAppByBundleID("com.fluidapp.FluidApp.Google Calendar")
+-- OmniFocus
+hs.hotkey.bind({"ctrl", "shift"}, "N",
+  switchToAppByName("OmniFocus")
 )
 
 -- Outlook
@@ -116,10 +101,30 @@ hs.hotkey.bind({"ctrl", "shift"}, "O",
   switchToAppByBundleID("com.microsoft.Outlook")
 )
 
--- Browser
-hs.hotkey.bind({"ctrl", "shift"}, "B",
-  switchToAppByName("Safari")
-  -- switchToAppByBundleID("com.operasoftware.Opera")
+hs.hotkey.bind({"ctrl", "shift"}, "P",
+  switchToAppByName("Music.app")
+  -- switchToAppByName("YTM.app")
+  -- switchToAppByName("Youtube Music.app")
+)
+
+-- Reminders
+hs.hotkey.bind({"ctrl", "shift"}, "R",
+  switchToAppByName("Reminders")
+)
+
+-- Spotify
+hs.hotkey.bind({"ctrl", "shift"}, "S",
+  switchToAppByBundleID("com.spotify.client")
+)
+
+-- iTerm
+hs.hotkey.bind({"ctrl", "shift"}, "T",
+  switchToAppByBundleID("com.googlecode.iterm2")
+)
+
+-- Alternote 
+hs.hotkey.bind({"ctrl", "shift"}, "U",
+  switchToAppByName("Alternote")
 )
 
 -- Vivaldi Browser / VS Code
@@ -128,22 +133,15 @@ hs.hotkey.bind({"ctrl", "shift"}, "V",
   -- switchToAppByName("Visual Studio Code")
 )
 
--- uTorrent
-hs.hotkey.bind({"ctrl", "shift"}, "U",
-  switchToAppByBundleID("com.bittorrent.uTorrent")
+-- Wechat
+hs.hotkey.bind({"ctrl", "shift"}, "W",
+  switchToAppByBundleID("com.tencent.xinWechat")
 )
 
-
-hs.hotkey.bind({"ctrl", "shift"}, "P",
-  switchToAppByName("Music.app")
-  -- switchToAppByName("YTM.app")
-  -- switchToAppByName("Youtube Music.app")
-)
-
--- OmniFocus
-hs.hotkey.bind({"ctrl", "shift"}, "N",
-  switchToAppByName("OmniFocus")
-  -- switchToAppByName("Microsoft OneNote")
+-- Microsoft To Do / Todoist 
+hs.hotkey.bind({"ctrl", "shift"}, "Y",
+  switchToAppByName("Microsoft To Do")
+  -- switchToAppByName("todoist")
 )
 
 --------------------------------------------------------
