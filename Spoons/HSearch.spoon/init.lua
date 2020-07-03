@@ -68,6 +68,9 @@ function obj:restoreOutput()
         cwin:focus()
         hs.eventtap.keyStrokes(arg)
     end
+    local function openLink(arg)
+        hs.execute("open " .. arg)
+    end
     obj.output_pool["browser"] = openWithBrowser
     obj.output_pool["safari"] = openWithSafari
     obj.output_pool["chrome"] = openWithChrome
@@ -76,6 +79,7 @@ function obj:restoreOutput()
     obj.output_pool["keystrokes"] = sendKeyStrokes
     obj.output_pool["chromefocus"] = hs.fnutils.partial(focusTabInBrowser, 'Google Chrome')
     obj.output_pool["safarifocus"] = hs.fnutils.partial(focusTabInBrowser, 'Safari')
+    obj.output_pool["open"] = openLink
 end
 
 function obj:init()
