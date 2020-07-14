@@ -3,6 +3,10 @@ require "hs.application"
 require "windowManagement"
 require "applicationSwitch"
 require "layoutManagement"
+-- require "fbinternal"
+require "format"
+
+clipboardToolOn = false
 
 --------------------------------------------------------
 hs.hotkey.bind({"cmd", "shift", "ctrl"}, "A", function()
@@ -74,7 +78,7 @@ end
 
 --------------------------------------------------------
 -- Clipboard Tool (text only)
-if hs.spoons.isInstalled("ClipboardTool") then
+if clipboardToolOn and hs.spoons.isInstalled("ClipboardTool") then
   clipboardTool = hs.loadSpoon("ClipboardTool")
   if hs.spoons.isLoaded("ClipboardTool") then 
     clipboardTool.paste_on_select = true
@@ -92,7 +96,7 @@ end
 --------------------------------------------------------
 -- HSearch 
 if hs.spoons.isInstalled("HSearch") then
-  hSearch = hs.loadSpoon("HSearch")
+  local hSearch = hs.loadSpoon("HSearch")
   if hs.spoons.isLoaded("HSearch") then 
     hSearch:loadSources()
     hs.hotkey.bind("alt", "space", function()
