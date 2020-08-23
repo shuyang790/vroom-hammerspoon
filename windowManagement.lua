@@ -25,6 +25,19 @@ if spoon.ModalMgr and spoon.WinWin then
     spoon.ModalMgr:new("resizeM")
     local cmodal = spoon.ModalMgr.modal_list["resizeM"]
     cmodal:bind('', 'escape', 'Deactivate resizeM', function() spoon.ModalMgr:deactivate({"resizeM"}) end)
+    cmodal:bind('', 'return', 'Whole screen without Fullscreen', function() 
+      local win = hs.window.focusedWindow()
+      local f = win:frame()
+      local screen = win:screen()
+      local max = screen:frame()
+
+      saveWindowState(win, f)
+      f.x = max.x
+      f.y = max.y
+      f.w = max.w
+      f.h = max.h
+      win:setFrame(f, 0)
+    end)
     cmodal:bind('', 'Q', 'Deactivate resizeM', function() spoon.ModalMgr:deactivate({"resizeM"}) end)
     cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)
     cmodal:bind('', 'A', 'Move Leftward', function() spoon.WinWin:stepMove("left") end, nil, function() spoon.WinWin:stepMove("left") end)
