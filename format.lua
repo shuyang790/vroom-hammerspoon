@@ -41,7 +41,7 @@ end
 
 -- hs.hotkey.bind({"alt", "shift"}, "H", replaceWithFormattedHeading)
 hs.hotkey.bind({"alt", "ctrl"}, "H", function()
-    local whitelist = {"Evernote", "TextEdit"}
+    local whitelist = {"Evernote", "TextEdit", "Firefox", "Microsoft OneNote"}
     local app = hs.application.frontmostApplication()
     if findInArray(whitelist, app:name()) then
         hs.eventtap.keyStroke({"cmd"}, "C")

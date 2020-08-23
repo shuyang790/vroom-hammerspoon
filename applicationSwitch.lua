@@ -3,7 +3,7 @@
 
 --------------------------------------------------------
 -- Window Hints
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "E", function()
+hs.hotkey.bind({"ctrl", "alt"}, "E", function()
   hs.hints.hintChars = {
     "E", "D", "C",
     "R", "F", "V",
@@ -144,6 +144,11 @@ hs.hotkey.bind({"ctrl", "shift"}, "Y",
   -- switchToAppByName("todoist")
 )
 
+-- Zoom
+hs.hotkey.bind({"ctrl", "shift"}, "Z",
+  switchToAppByName("zoom.us")
+  -- switchToAppByName("todoist")
+)
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)
