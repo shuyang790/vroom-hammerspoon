@@ -26,7 +26,7 @@ end
 
 local function updateOptions(queryStr)
     local chooser_data = {}
-    local browsers = {"firefox", "chrome", "safari"}
+    local browsers = {"firefox", "chrome", "safari", "vivaldi"}
     for idx,browser in ipairs(browsers) do 
         table.insert(chooser_data, {text="(" .. browser .. ") Bunny: " .. queryStr, subText=browser, output=browser, arg="https://bunnylol.facebook.net/?" .. queryStr})
     end
