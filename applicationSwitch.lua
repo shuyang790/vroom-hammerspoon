@@ -64,9 +64,10 @@ hs.hotkey.bind({"ctrl", "shift"}, "D",
   switchToAppByName("2Do")
 )
 
--- Evernote
+-- Evernote / Bear
 hs.hotkey.bind({"ctrl", "shift"}, "E",
-  switchToAppByBundleID("com.evernote.Evernote")
+  switchToAppByName("Bear")
+  -- switchToAppByName("Evernote")
 )
 
 -- Firefox
@@ -102,7 +103,9 @@ hs.hotkey.bind({"ctrl", "shift"}, "O",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "P",
-  switchToAppByName("Music.app")
+  switchToAppByName("Typora")
+  -- switchToAppByName("Bear")
+  -- switchToAppByName("Music.app")
   -- switchToAppByName("YTM.app")
   -- switchToAppByName("Youtube Music.app")
 )
@@ -138,9 +141,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
   switchToAppByBundleID("com.tencent.xinWechat")
 )
 
--- Microsoft To Do / Todoist 
 hs.hotkey.bind({"ctrl", "shift"}, "Y",
-  switchToAppByName("Microsoft To Do")
+  switchToAppByName("Typora")
   -- switchToAppByName("todoist")
 )
 
