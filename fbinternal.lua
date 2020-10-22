@@ -61,7 +61,16 @@ local function checkVPNAndUpdateState()
       end
     end
   vpn_menubar:setMenu({
-    {title = genVPNStatusMessage(vpn_state), disabled = true },
+    {title = "FB VPN", disabled = true },
+    -- {title = genVPNStatusMessage(vpn_state), disabled = true },
+    {title = "Connect", disabled = vpn_state, fn = function()
+      local button, key = hs.dialog.textPrompt("Yubikey", "Please enter passcode from Yubikey", "", "OK", "Cancel")
+      hs.alert.show(key)
+      if button == "OK" then
+        local success, out = hs.osascript.applescript("do shell script \"printf " .. key .." | /opt/cisco/anyconnect/bin/vpn -s connect 'Americas East'\"")
+        checkVPNAndUpdateState()
+      end
+    end},
     {title = "Disconnect", disabled = not vpn_state, fn = function ()
       hs.osascript.applescript("do shell script\"/opt/cisco/anyconnect/bin/vpn disconnect\"")
       checkVPNAndUpdateState()
