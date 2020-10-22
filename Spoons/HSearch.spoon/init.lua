@@ -41,6 +41,9 @@ function obj:restoreOutput()
     local function openWithChrome(arg)
         hs.urlevent.openURLWithBundle(arg, "com.google.Chrome")
     end
+    local function openWithVivaldi(arg)
+        hs.urlevent.openURLWithBundle(arg, "com.vivaldi.Vivaldi")
+    end
     local function focusTabInBrowser(browser, arg) 
         hs.osascript.javascript([[
             (function() {
@@ -74,6 +77,7 @@ function obj:restoreOutput()
     obj.output_pool["browser"] = openWithBrowser
     obj.output_pool["safari"] = openWithSafari
     obj.output_pool["chrome"] = openWithChrome
+    obj.output_pool["vivaldi"] = openWithVivaldi
     obj.output_pool["firefox"] = openWithFirefox
     obj.output_pool["clipboard"] = copyToClipboard
     obj.output_pool["keystrokes"] = sendKeyStrokes
