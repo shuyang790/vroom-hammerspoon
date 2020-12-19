@@ -70,15 +70,34 @@ hs.hotkey.bind({"ctrl", "shift"}, "E",
   -- switchToAppByName("Evernote")
 )
 
--- Firefox
-hs.hotkey.bind({"ctrl", "shift"}, "F",
-  -- switchToAppByName("Firefox Developer Edition")
-  switchToAppByBundleID("org.mozilla.firefox")
-)
+
+function chrome_switch_to(ppl)
+    return function()
+        hs.application.launchOrFocus("Google Chrome")
+        local chrome = hs.appfinder.appFromName("Google Chrome")
+        local str_menu_item
+        if ppl == "Incognito" then
+            str_menu_item = {"File", "New Incognito Window"}
+        else
+            str_menu_item = {"People", ppl}
+        end
+        local menu_item = chrome:findMenuItem(str_menu_item)
+        if (menu_item) then
+            chrome:selectMenuItem(str_menu_item)
+        end
+    end
+end
 
 -- Chrome
 hs.hotkey.bind({"ctrl", "shift"}, "G",
-  switchToAppByBundleID("com.google.chrome")
+  chrome_switch_to("Shuyang (Personal)")
+  -- switchToAppByBundleID("com.google.chrome")
+)
+
+-- Firefox / Chrome
+hs.hotkey.bind({"ctrl", "shift"}, "F",
+  switchToAppByName("Firefox Developer Edition")
+  -- switchToAppByBundleID("org.mozilla.firefox")
 )
 
 -- IntelliJ Idea
@@ -130,10 +149,10 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
   switchToAppByName("Alternote")
 )
 
--- Vivaldi Browser / VS Code
+-- Vivaldi / Chrome FB 
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  switchToAppByBundleID("com.vivaldi.Vivaldi")
-  -- switchToAppByName("Visual Studio Code")
+  chrome_switch_to("Shuyang (Facebook)")
+  -- switchToAppByBundleID("com.vivaldi.Vivaldi")
 )
 
 -- Wechat
