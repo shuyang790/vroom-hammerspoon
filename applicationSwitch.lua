@@ -161,7 +161,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "Y",
-  switchToAppByName("Typora")
+  switchToAppByName("Mark Text")
   -- switchToAppByName("todoist")
 )
 
