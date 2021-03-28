@@ -3,7 +3,7 @@ require "hs.application"
 require "windowManagement"
 require "applicationSwitch"
 require "layoutManagement"
--- require "fbinternal"
+require "fbinternal"
 require "format"
 
 clipboardToolOn = false
@@ -69,14 +69,14 @@ end
 
 --------------------------------------------------------
 -- HSearch 
-if hs.spoons.isInstalled("HSearch") then
-  local hSearch = hs.loadSpoon("HSearch")
-  if hs.spoons.isLoaded("HSearch") then 
-    hSearch:loadSources()
-    hs.hotkey.bind("alt", "space", function()
-      hSearch:toggleShow()
-    end)
-  end
-else
-  hs.alert.show("Spoon HSearch not installed!")
-end
+-- if hs.spoons.isInstalled("HSearch") then
+--   local hSearch = hs.loadSpoon("HSearch")
+--   if hs.spoons.isLoaded("HSearch") then 
+--     hSearch:loadSources()
+--     hs.hotkey.bind("alt", "space", function()
+--       hSearch:toggleShow()
+--     end)
+--   end
+-- else
+--   hs.alert.show("Spoon HSearch not installed!")
+-- end

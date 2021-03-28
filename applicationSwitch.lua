@@ -96,8 +96,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "G",
 
 -- Firefox / Chrome
 hs.hotkey.bind({"ctrl", "shift"}, "F",
-  switchToAppByName("Firefox Developer Edition")
-  -- switchToAppByBundleID("org.mozilla.firefox")
+  -- switchToAppByName("Firefox Developer Edition")
+  switchToAppByBundleID("org.mozilla.firefox")
 )
 
 -- IntelliJ Idea
@@ -107,7 +107,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  switchToAppByName("Spark")
+  switchToAppByName("Mail")
   -- switchToAppByName("Thunderbird")
 )
 
@@ -161,14 +161,13 @@ hs.hotkey.bind({"ctrl", "shift"}, "W",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "Y",
-  switchToAppByName("Mark Text")
-  -- switchToAppByName("todoist")
+  switchToAppByName("Typora")
+  -- switchToAppByName("Mark Text")
 )
 
 -- Zoom
 hs.hotkey.bind({"ctrl", "shift"}, "Z",
   switchToAppByName("zoom.us")
-  -- switchToAppByName("todoist")
 )
 --------------------------------------------------------
 -- Helper
