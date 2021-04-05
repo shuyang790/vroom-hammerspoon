@@ -205,6 +205,67 @@ hs.hotkey.bind({"alt", "ctrl"}, "return", function()
   win:setFrame(f, 0)
 end)
 --------------------------------------------------------
+-- Window Layout: 2/3 and 1/3 Screen
+
+function switchThirdsLeft(f, max)
+  if f.x == max.x and f.y == max.y and f.h == max.h then
+    if f.w == max.w / 3 then
+      -- 1/3 --> 2/3
+      f.w = max.w * 2 / 3
+      return
+    else if f.w == max.w * 2 / 3 then
+      -- 2/3 --> 1/3
+      f.w = max.w / 3
+      return
+    end
+    end
+  end
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
+end
+
+function switchThirdsRight(f, max)
+  if (f.x + f.w) / 2 == (max.x + max.w) / 2 and f.y == max.y and f.h == max.h then
+    if f.w == max.w / 3 then
+      -- 1/3 --> 2/3
+      f.w = max.w * 2 / 3
+      f.x = max.x + (max.w / 3)
+      return
+    else if f.w == max.w * 2 / 3 then
+      -- 2/3 --> 1/3
+      f.w = max.w / 3
+      f.x = max.x + (max.w * 2 / 3)
+      return
+    end
+    end
+  end
+  f.x = max.x + (max.w * 2 / 3)
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
+end
+
+hs.hotkey.bind({"alt", "ctrl", "shift"}, "Left", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+  saveWindowState(win, f)
+  switchThirdsLeft(f, max)
+  win:setFrame(f, 0)
+end)
+
+hs.hotkey.bind({"alt", "ctrl", "shift"}, "Right", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+  saveWindowState(win, f)
+  switchThirdsRight(f, max)
+  win:setFrame(f, 0)
+end)
 
 --------------------------------------------------------
 -- Window Layout: Half Screen
