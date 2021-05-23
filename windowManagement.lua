@@ -207,13 +207,20 @@ end)
 --------------------------------------------------------
 -- Window Layout: 2/3 and 1/3 Screen
 
+function closeEnough(x, y)
+  if x == y or x + 1 == y or x == y + 1 then
+    return true
+  end
+  return false
+end
+
 function switchThirdsLeft(f, max)
   if f.x == max.x and f.y == max.y and f.h == max.h then
-    if f.w == max.w / 3 then
+    if closeEnough(f.w, max.w / 3) then
       -- 1/3 --> 2/3
       f.w = max.w * 2 / 3
       return
-    else if f.w == max.w * 2 / 3 then
+    else if closeEnough(f.w, max.w * 2 / 3) then
       -- 2/3 --> 1/3
       f.w = max.w / 3
       return
@@ -228,12 +235,12 @@ end
 
 function switchThirdsRight(f, max)
   if (f.x + f.w) / 2 == (max.x + max.w) / 2 and f.y == max.y and f.h == max.h then
-    if f.w == max.w / 3 then
+    if closeEngouh(f.w, max.w / 3) then
       -- 1/3 --> 2/3
       f.w = max.w * 2 / 3
       f.x = max.x + (max.w / 3)
       return
-    else if f.w == max.w * 2 / 3 then
+    else if closeEngouh(f.w, max.w * 2 / 3) then
       -- 2/3 --> 1/3
       f.w = max.w / 3
       f.x = max.x + (max.w * 2 / 3)

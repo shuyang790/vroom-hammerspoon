@@ -122,8 +122,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "O",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "P",
-  switchToAppByName("Typora")
-  -- switchToAppByName("Bear")
+  switchToAppByName("Microsoft To Do")
   -- switchToAppByName("Music.app")
   -- switchToAppByName("YTM.app")
   -- switchToAppByName("Youtube Music.app")
@@ -151,7 +150,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
 
 -- Vivaldi / Chrome FB 
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  chrome_switch_to("Shuyang (Facebook)")
+  -- chrome_switch_to("Shuyang (Facebook)")
+  switchToAppByName("Firefox Developer Edition")
   -- switchToAppByBundleID("com.vivaldi.Vivaldi")
 )
 
