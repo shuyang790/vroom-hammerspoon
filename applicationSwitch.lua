@@ -66,8 +66,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "D",
 
 -- Evernote / Bear
 hs.hotkey.bind({"ctrl", "shift"}, "E",
-  switchToAppByName("Bear")
-  -- switchToAppByName("Evernote")
+  -- switchToAppByName("Bear")
+  switchToAppByName("Notes")
 )
 
 
@@ -79,7 +79,7 @@ function chrome_switch_to(ppl)
         if ppl == "Incognito" then
             str_menu_item = {"File", "New Incognito Window"}
         else
-            str_menu_item = {"People", ppl}
+            str_menu_item = {"Profiles", ppl}
         end
         local menu_item = chrome:findMenuItem(str_menu_item)
         if (menu_item) then
@@ -90,7 +90,7 @@ end
 
 -- Chrome
 hs.hotkey.bind({"ctrl", "shift"}, "G",
-  chrome_switch_to("Shuyang (Personal)")
+  chrome_switch_to("Shuyang")
   -- switchToAppByBundleID("com.google.chrome")
 )
 
@@ -150,8 +150,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "U",
 
 -- Vivaldi / Chrome FB 
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  -- chrome_switch_to("Shuyang (Facebook)")
-  switchToAppByName("Firefox Developer Edition")
+  chrome_switch_to("Shuyang (Work)")
+  -- switchToAppByName("Firefox Developer Edition")
   -- switchToAppByBundleID("com.vivaldi.Vivaldi")
 )
 
