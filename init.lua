@@ -4,9 +4,8 @@ require "windowManagement"
 require "applicationSwitch"
 require "layoutManagement"
 require "fbinternal"
-require "format"
 
-clipboardToolOn = true
+clipboardToolOn = false
 
 --------------------------------------------------------
 hs.hotkey.bind({"cmd", "shift", "ctrl"}, "A", function()
