@@ -50,7 +50,6 @@ hs.hotkey.bind({"ctrl", "shift"}, "A",
 -- Browser
 hs.hotkey.bind({"ctrl", "shift"}, "B",
   switchToAppByName("Safari")
-  -- switchToAppByBundleID("com.operasoftware.Opera")
 )
 
 -- Fantastical / Calendar
@@ -59,14 +58,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "C",
   switchToAppByName("Fantastical")
 )
 
--- 2Do
-hs.hotkey.bind({"ctrl", "shift"}, "D",
-  switchToAppByName("2Do")
-)
-
--- Evernote / Bear
+-- Evernote / Notes
 hs.hotkey.bind({"ctrl", "shift"}, "E",
-  -- switchToAppByName("Bear")
   switchToAppByName("Notes")
 )
 
@@ -119,12 +112,12 @@ hs.hotkey.bind({"ctrl", "shift"}, "N",
 -- Outlook
 hs.hotkey.bind({"ctrl", "shift"}, "O",
   switchToAppByBundleID("com.microsoft.Outlook")
+  -- switchToAppByName("Outlook")
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "P",
   switchToAppByName("Microsoft To Do")
   -- switchToAppByName("Music.app")
-  -- switchToAppByName("YTM.app")
   -- switchToAppByName("Youtube Music.app")
 )
 
@@ -141,11 +134,6 @@ hs.hotkey.bind({"ctrl", "shift"}, "S",
 -- iTerm
 hs.hotkey.bind({"ctrl", "shift"}, "T",
   switchToAppByBundleID("com.googlecode.iterm2")
-)
-
--- Alternote 
-hs.hotkey.bind({"ctrl", "shift"}, "U",
-  switchToAppByName("Alternote")
 )
 
 -- Vivaldi / Chrome FB 
