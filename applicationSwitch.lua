@@ -100,8 +100,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "I",
 
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
-  switchToAppByName("Mail")
-  -- switchToAppByName("Thunderbird")
+  -- switchToAppByName("Mail")
+  switchToAppByName("Spark")
 )
 
 -- OmniFocus
@@ -116,8 +116,8 @@ hs.hotkey.bind({"ctrl", "shift"}, "O",
 )
 
 hs.hotkey.bind({"ctrl", "shift"}, "P",
-  switchToAppByName("Microsoft To Do")
-  -- switchToAppByName("Music.app")
+  -- switchToAppByName("Microsoft To Do")
+  switchToAppByName("Music.app")
   -- switchToAppByName("Youtube Music.app")
 )
 
