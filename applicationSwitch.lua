@@ -93,11 +93,6 @@ hs.hotkey.bind({"ctrl", "shift"}, "F",
   switchToAppByBundleID("org.mozilla.firefox")
 )
 
--- IntelliJ Idea
-hs.hotkey.bind({"ctrl", "shift"}, "I",
-  switchToAppByName("IntelliJ IDEA CE")
-)
-
 -- Email
 hs.hotkey.bind({"ctrl", "shift"}, "M",
   -- switchToAppByName("Mail")
@@ -121,9 +116,9 @@ hs.hotkey.bind({"ctrl", "shift"}, "P",
   -- switchToAppByName("Youtube Music.app")
 )
 
--- Reminders
+-- Craft
 hs.hotkey.bind({"ctrl", "shift"}, "R",
-  switchToAppByName("Reminders")
+  switchToAppByName("Craft")
 )
 
 -- Spotify
