@@ -83,11 +83,11 @@ end
 
 -- Chrome
 hs.hotkey.bind({"ctrl", "shift"}, "G",
-  chrome_switch_to("Shuyang")
+  chrome_switch_to("Shuyang (Personal)")
   -- switchToAppByBundleID("com.google.chrome")
 )
 
--- Firefox / Chrome
+-- Firefox
 hs.hotkey.bind({"ctrl", "shift"}, "F",
   -- switchToAppByName("Firefox Developer Edition")
   switchToAppByBundleID("org.mozilla.firefox")
@@ -133,7 +133,7 @@ hs.hotkey.bind({"ctrl", "shift"}, "T",
 
 -- Vivaldi / Chrome FB 
 hs.hotkey.bind({"ctrl", "shift"}, "V",
-  chrome_switch_to("Shuyang (Work)")
+  chrome_switch_to("Shuyang (Facebook)")
   -- switchToAppByName("Firefox Developer Edition")
   -- switchToAppByBundleID("com.vivaldi.Vivaldi")
 )
