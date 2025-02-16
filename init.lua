@@ -3,7 +3,7 @@ require("windowManagement")
 require("applicationSwitch")
 require("layoutManagement")
 
-clipboardToolOn = false
+ClipboardToolOn = false
 
 --------------------------------------------------------
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "A", function()
@@ -14,7 +14,7 @@ end)
 --------------------------------------------------------
 -- Reload Config
 function reloadConfig(files)
-	doReload = false
+	local doReload = false
 	for _, file in pairs(files) do
 		if file:sub(-4) == ".lua" then
 			doReload = true
@@ -52,7 +52,7 @@ end)
 
 --------------------------------------------------------
 -- Clipboard Tool (text only)
-if clipboardToolOn and hs.spoons.isInstalled("ClipboardTool") then
+if ClipboardToolOn and hs.spoons.isInstalled("ClipboardTool") then
 	clipboardTool = hs.loadSpoon("ClipboardTool")
 	if hs.spoons.isLoaded("ClipboardTool") then
 		clipboardTool.paste_on_select = true
