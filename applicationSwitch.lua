@@ -57,9 +57,6 @@ hs.hotkey.bind({ "ctrl", "shift" }, "B", switchToAppByName("Safari"))
 -- Fantastical / Calendar
 hs.hotkey.bind({ "ctrl", "shift" }, "C", switchToAppByName("Calendar"))
 
--- Evernote / Notes
-hs.hotkey.bind({ "ctrl", "shift" }, "E", switchToAppByName("Notes"))
-
 function chrome_switch_to(ppl)
 	return function()
 		hs.application.launchOrFocus("Google Chrome")
