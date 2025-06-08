@@ -86,20 +86,10 @@ hs.hotkey.bind(
 )
 
 -- Firefox
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"F",
-	-- switchToAppByName("Firefox Developer Edition")
-	switchToAppByBundleID("org.mozilla.firefox")
-)
+hs.hotkey.bind({ "ctrl", "shift" }, "F", switchToAppByBundleID("org.mozilla.firefox"))
 
 -- Email
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"M",
-	-- switchToAppByName("Mail")
-	switchToAppByName("Spark")
-)
+hs.hotkey.bind({ "ctrl", "shift" }, "M", switchToAppByName("Mail"))
 
 -- Notes
 hs.hotkey.bind({ "ctrl", "shift" }, "N", switchToAppByName("Notes.app"))
@@ -112,12 +102,7 @@ hs.hotkey.bind(
 	-- switchToAppByName("Outlook")
 )
 
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"P",
-	-- switchToAppByName("Microsoft To Do")
-	switchToAppByName("Music.app")
-)
+hs.hotkey.bind({ "ctrl", "shift" }, "P", switchToAppByName("Music.app"))
 
 -- Spotify
 hs.hotkey.bind({ "ctrl", "shift" }, "S", switchToAppByBundleID("com.spotify.client"))
@@ -131,12 +116,7 @@ hs.hotkey.bind({ "ctrl", "shift" }, "V", switchToAppByBundleID("com.vivaldi.Viva
 -- Wechat
 hs.hotkey.bind({ "ctrl", "shift" }, "W", switchToAppByBundleID("com.tencent.xinWechat"))
 
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"Y",
-	switchToAppByName("Typora")
-	-- switchToAppByName("Mark Text")
-)
+hs.hotkey.bind({ "ctrl", "shift" }, "Y", switchToAppByName("Typora"))
 
 -- Things 3
 hs.hotkey.bind({ "ctrl", "shift" }, "H", switchToAppByName("Things3"))
