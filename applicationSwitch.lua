@@ -91,6 +91,9 @@ hs.hotkey.bind({ "ctrl", "shift" }, "M", switchToAppByName("Mail"))
 -- Notes
 hs.hotkey.bind({ "ctrl", "shift" }, "N", switchToAppByName("Notes.app"))
 
+-- Obsidian
+hs.hotkey.bind({ "ctrl", "shift" }, "O", switchToAppByName("Obsidian"))
+
 -- Outlook
 hs.hotkey.bind(
 	{ "ctrl", "shift" },
@@ -104,8 +107,9 @@ hs.hotkey.bind({ "ctrl", "shift" }, "P", switchToAppByName("Music.app"))
 -- Spotify
 hs.hotkey.bind({ "ctrl", "shift" }, "S", switchToAppByBundleID("com.spotify.client"))
 
--- iTerm
-hs.hotkey.bind({ "ctrl", "shift" }, "T", switchToAppByBundleID("com.googlecode.iterm2"))
+-- Terminal
+hs.hotkey.bind({ "ctrl", "shift" }, "T", switchToAppByName("Ghostty"))
+-- hs.hotkey.bind({ "ctrl", "shift" }, "T", switchToAppByBundleID("com.googlecode.iterm2"))
 
 -- Vivaldi
 hs.hotkey.bind({ "ctrl", "shift" }, "V", switchToAppByBundleID("com.vivaldi.Vivaldi"))
@@ -115,11 +119,14 @@ hs.hotkey.bind({ "ctrl", "shift" }, "W", switchToAppByBundleID("com.tencent.xinW
 
 hs.hotkey.bind({ "ctrl", "shift" }, "Y", switchToAppByName("Typora"))
 
--- Things 3
-hs.hotkey.bind({ "ctrl", "shift" }, "H", switchToAppByName("Things3"))
+-- Omnifocus
+hs.hotkey.bind({ "ctrl", "shift" }, "H", switchToAppByName("Omnifocus"))
 
 -- Zoom
 hs.hotkey.bind({ "ctrl", "shift" }, "Z", switchToAppByName("zoom.us"))
+
+-- Claude
+hs.hotkey.bind({ "ctrl", "shift" }, "X", switchToAppByName("Claude"))
 --------------------------------------------------------
 -- Helper
 function findApplicationBundleID(name)

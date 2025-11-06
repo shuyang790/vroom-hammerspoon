@@ -28,24 +28,6 @@ local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", relo
 hs.alert.show("Vroom: Config loaded")
 --------------------------------------------------------
 
---------------------------------------------------------
--- Spotify
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "S", function()
-	if hs.spotify.isRunning() then
-		hs.alert.show(
-			"Track: "
-				.. hs.spotify.getCurrentTrack()
-				.. "\n"
-				.. "Artist: "
-				.. hs.spotify.getCurrentArtist()
-				.. "\n"
-				.. "Album: "
-				.. hs.spotify.getCurrentAlbum()
-		)
-	end
-end)
---------------------------------------------------------
-
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "Q", function()
 	hs.caffeinate.lockScreen()
 end)
