@@ -3,6 +3,7 @@ require("modules.windowManagement")
 require("modules.applicationSwitch")
 require("modules.layoutManagement")
 require("modules.clipboard")
+require("modules.ghostty")
 
 --------------------------------------------------------
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "A", function()
