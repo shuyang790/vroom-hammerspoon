@@ -1,53 +1,72 @@
-modal = hs.hotkey.modal.new('cmd-alt-ctrl', 'P')
+local layoutModal = hs.hotkey.modal.new({ "cmd", "alt", "ctrl" }, "P")
+local registeredWindowId
 
---------------------------------------------------------
-
-function modal:entered()
-  hs.alert'Layout mode: Enter'
+function layoutModal:entered()
+	hs.alert.show("Layout mode: R to register, Y for side by side, Esc to exit")
 end
 
-function modal:exited()
-  hs.alert'Layout mode: Exit'
-end
-
-modal:bind({'cmd', 'alt', 'ctrl'}, 'P', function()
-  modal:exit()
+layoutModal:bind("", "escape", function()
+	hs.alert.closeAll()
+	layoutModal:exit()
 end)
 
--- register browser
-browserId = nil
-modal:bind({'cmd', 'alt', 'ctrl'}, 'R', function()
-  switchToAppByBundleID("com.vivaldi.Vivaldi")
-  local w = hs.window.focusedWindow()
-  -- hs.alert.show(w:title())
-  if string.match(w:title(), "^.*- Vivaldi") then
-    browserId = w:id()
-    hs.alert.show('Browser window registered: ' .. browserId)
-  end
+layoutModal:bind("", "P", function()
+	layoutModal:exit()
 end)
 
--- Side by side current window with browser
-modal:bind({'cmd', 'alt', 'ctrl'}, 'Y', function()
-  local browser = hs.window.get(browserId)
-  local app = hs.window.focusedWindow()
+-- Register the currently focused window as the left-side reference window.
+layoutModal:bind("", "R", function()
+	local win = hs.window.focusedWindow()
+	if not win then
+		hs.alert.closeAll()
+		hs.alert.show("No focused window to register")
+		layoutModal:exit()
+		return
+	end
 
-  if browser and app then 
-    hs.alert.show("Browser " .. browser:id() .. " and app " .. app:id())
-    local max = browser:screen():frame()
-    local fB = browser:frame()
-    fB.x = max.x
-    fB.y = max.y
-    fB.w = max.w / 2
-    fB.h = max.h
-    browser:setFrame(fB, 0)
-
-    local fI = app:frame()
-    fI.x = max.x + (max.w / 2)
-    fI.y = max.y
-    fI.w = max.w / 2
-    fI.h = max.h
-    app:setFrame(fI, 0)
-  end
-  modal:exit()
+	registeredWindowId = win:id()
+	local app = win:application()
+	local label = app and app:name() or win:title()
+	hs.alert.closeAll()
+	hs.alert.show("Registered window: " .. label)
+	layoutModal:exit()
 end)
 
+-- Place the registered window on the left and the current window on the right.
+layoutModal:bind("", "Y", function()
+	local registeredWindow = registeredWindowId and hs.window.get(registeredWindowId)
+	local currentWindow = hs.window.focusedWindow()
+
+	if not registeredWindow then
+		hs.alert.closeAll()
+		hs.alert.show("Register a window first")
+		layoutModal:exit()
+		return
+	end
+
+	if not currentWindow or currentWindow:id() == registeredWindow:id() then
+		hs.alert.closeAll()
+		hs.alert.show("Focus a different window for the right side")
+		layoutModal:exit()
+		return
+	end
+
+	local screenFrame = currentWindow:screen():frame()
+	local halfWidth = screenFrame.w / 2
+
+	registeredWindow:setFrame({
+		x = screenFrame.x,
+		y = screenFrame.y,
+		w = halfWidth,
+		h = screenFrame.h,
+	}, 0)
+	currentWindow:setFrame({
+		x = screenFrame.x + halfWidth,
+		y = screenFrame.y,
+		w = halfWidth,
+		h = screenFrame.h,
+	}, 0)
+
+	hs.alert.closeAll()
+	layoutModal:exit()
+end)

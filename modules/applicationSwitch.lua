@@ -28,112 +28,44 @@ end)
 --------------------------------------------------------
 
 --------------------------------------------------------
--- Template
-function switchToAppByName(name)
+local function switchToAppByName(name)
 	return function()
-		local launch = hs.application.launchOrFocus(name)
-		if not launch then
+		if not hs.application.launchOrFocus(name) then
 			hs.alert.show("Vroom cannot launch " .. name .. " :(")
 		end
 	end
 end
 
-function switchToAppByBundleID(bundleID)
+local function switchToAppByBundleID(bundleID)
 	return function()
-		local launch = hs.application.launchOrFocusByBundleID(bundleID)
-		if not launch then
+		if not hs.application.launchOrFocusByBundleID(bundleID) then
 			hs.alert.show("Vroom cannot launch " .. bundleID .. " :(")
 		end
 	end
 end
---------------------------------------------------------
 
--- Atom / VS Code
-hs.hotkey.bind({ "ctrl", "shift" }, "A", switchToAppByName("Visual Studio Code"))
+local appShortcuts = {
+	{ key = "A", bundleID = "com.microsoft.VSCode" },
+	{ key = "B", bundleID = "com.apple.Safari" },
+	{ key = "C", name = "Google Calendar" },
+	{ key = "E", bundleID = "net.shinyfrog.bear" },
+	{ key = "F", bundleID = "org.mozilla.firefox" },
+	{ key = "G", bundleID = "com.google.Chrome" },
+	{ key = "H", bundleID = "com.culturedcode.ThingsMac" },
+	{ key = "M", name = "Gmail" },
+	{ key = "N", bundleID = "com.apple.Notes" },
+	{ key = "O", bundleID = "md.obsidian" },
+	{ key = "P", bundleID = "com.apple.Music" },
+	{ key = "R", bundleID = "com.apple.reminders" },
+	{ key = "T", bundleID = "com.github.wez.wezterm" },
+	{ key = "W", bundleID = "com.tencent.xinWeChat" },
+	{ key = "X", bundleID = "com.openai.codex" },
+	{ key = "Y", bundleID = "com.mitchellh.ghostty" },
+	{ key = "Z", bundleID = "us.zoom.xos" },
+}
 
--- Browser
-hs.hotkey.bind({ "ctrl", "shift" }, "B", switchToAppByName("Safari"))
-
--- Fantastical / Calendar
-hs.hotkey.bind({ "ctrl", "shift" }, "C", switchToAppByName("Calendar"))
-
-function chrome_switch_to(ppl)
-	return function()
-		hs.application.launchOrFocus("Google Chrome")
-		local chrome = hs.appfinder.appFromName("Google Chrome")
-		local str_menu_item
-		if ppl == "Incognito" then
-			str_menu_item = { "File", "New Incognito Window" }
-		else
-			str_menu_item = { "Profiles", ppl }
-		end
-		local menu_item = chrome:findMenuItem(str_menu_item)
-		if menu_item then
-			chrome:selectMenuItem(str_menu_item)
-		end
-	end
-end
-
--- Chrome
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"G",
-	-- chrome_switch_to("Shuyang (Personal)")
-	switchToAppByBundleID("com.google.chrome")
-)
-
--- Firefox
-hs.hotkey.bind({ "ctrl", "shift" }, "F", switchToAppByBundleID("org.mozilla.firefox"))
-
--- Email
-hs.hotkey.bind({ "ctrl", "shift" }, "M", switchToAppByName("Mail"))
-
--- Notes
-hs.hotkey.bind({ "ctrl", "shift" }, "N", switchToAppByName("Notes.app"))
-
--- Obsidian
-hs.hotkey.bind({ "ctrl", "shift" }, "O", switchToAppByName("Obsidian"))
-
--- Outlook
-hs.hotkey.bind(
-	{ "ctrl", "shift" },
-	"O",
-	switchToAppByBundleID("com.microsoft.Outlook")
-	-- switchToAppByName("Outlook")
-)
-
-hs.hotkey.bind({ "ctrl", "shift" }, "P", switchToAppByName("Music.app"))
-
--- Spotify
-hs.hotkey.bind({ "ctrl", "shift" }, "S", switchToAppByBundleID("com.spotify.client"))
-
--- Terminal
-hs.hotkey.bind({ "ctrl", "shift" }, "T", switchToAppByName("Ghostty"))
--- hs.hotkey.bind({ "ctrl", "shift" }, "T", switchToAppByBundleID("com.googlecode.iterm2"))
-
--- Vivaldi
-hs.hotkey.bind({ "ctrl", "shift" }, "V", switchToAppByBundleID("com.vivaldi.Vivaldi"))
-
--- Wechat
-hs.hotkey.bind({ "ctrl", "shift" }, "W", switchToAppByBundleID("com.tencent.xinWechat"))
-
-hs.hotkey.bind({ "ctrl", "shift" }, "Y", switchToAppByName("Typora"))
-
--- Omnifocus
-hs.hotkey.bind({ "ctrl", "shift" }, "H", switchToAppByName("Omnifocus"))
-
--- Zoom
-hs.hotkey.bind({ "ctrl", "shift" }, "Z", switchToAppByName("zoom.us"))
-
--- Claude
-hs.hotkey.bind({ "ctrl", "shift" }, "X", switchToAppByName("Claude"))
---------------------------------------------------------
--- Helper
-function findApplicationBundleID(name)
-	local apps = hs.application.runningApplications()
-	for k, v in pairs(apps) do
-		if string.find(v:name(), name) ~= nil then
-			hs.alert(v:bundleID(), 10)
-		end
-	end
+for _, shortcut in ipairs(appShortcuts) do
+	local action = shortcut.bundleID and switchToAppByBundleID(shortcut.bundleID)
+		or switchToAppByName(shortcut.name)
+	hs.hotkey.bind({ "ctrl", "shift" }, shortcut.key, action)
 end

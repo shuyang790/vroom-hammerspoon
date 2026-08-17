@@ -3,7 +3,7 @@
 --   - window movement CTRL + ALT + CMD + H/J/K/L
 --   - window size adjustment CTRL + SHIFT + ALT + H/J/K/L
 --   - window full screen CTRL + ALT + RETURN
---   - window half screen CTRL + ALT + Left/Right/Up/Down/C
+--   - window size cycle (1/2, 1/3, 2/3) CTRL + ALT + Left/Right/Up/Down
 --   - window quarter screen CTRL + ALT + U/I/J/K
 --   - window switch within Space ALT + TAB
 
@@ -18,6 +18,31 @@ end
 loadSpoon("ModalMgr")
 loadSpoon("WinWin")
 
+local windowCache = {}
+
+local function saveWindowState(win, frame)
+	local id = win:id()
+	if windowCache[id] == nil then
+		windowCache[id] = {
+			x = frame.x,
+			y = frame.y,
+			w = frame.w,
+			h = frame.h,
+		}
+	end
+end
+
+local function withFocusedWindow(action)
+	return function()
+		local win = hs.window.focusedWindow()
+		if not win then
+			hs.alert.show("No focused window")
+			return
+		end
+		action(win)
+	end
+end
+
 ----------------------------------------------------------------------------------------------------
 -- resizeM modal environment
 if spoon.ModalMgr and spoon.WinWin then
@@ -26,8 +51,7 @@ if spoon.ModalMgr and spoon.WinWin then
 	cmodal:bind("", "escape", "Deactivate resizeM", function()
 		spoon.ModalMgr:deactivate({ "resizeM" })
 	end)
-	cmodal:bind("", "return", "Whole screen without Fullscreen", function()
-		local win = hs.window.focusedWindow()
+	cmodal:bind("", "return", "Whole screen without Fullscreen", withFocusedWindow(function(win)
 		local f = win:frame()
 		local screen = win:screen()
 		local max = screen:frame()
@@ -38,7 +62,7 @@ if spoon.ModalMgr and spoon.WinWin then
 		f.w = max.w
 		f.h = max.h
 		win:setFrame(f, 0)
-	end)
+	end))
 	cmodal:bind("", "Q", "Deactivate resizeM", function()
 		spoon.ModalMgr:deactivate({ "resizeM" })
 	end)
@@ -229,38 +253,21 @@ if spoon.ModalMgr and spoon.WinWin then
 	end)
 end
 --------------------------------------------------------
--- Helper: Save Window State
-windowCache = {}
-function saveWindowState(win, f)
-	local id = win:id()
-	if windowCache[id] == nil then
-		windowCache[id] = {}
-		windowCache[id]["x"] = f.x
-		windowCache[id]["y"] = f.y
-		windowCache[id]["w"] = f.w
-		windowCache[id]["h"] = f.h
-	end
-end
---------------------------------------------------------
-
---------------------------------------------------------
 -- Window Layout: Resume previous
-hs.hotkey.bind({ "alt", "ctrl" }, "delete", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "delete", withFocusedWindow(function(win)
 	local id = win:id()
-	local f = win:frame()
 	if windowCache[id] ~= nil then
 		win:setFrame(windowCache[id], 0)
 		windowCache[id] = nil
 	else
 		hs.alert.show("Window not in cache!")
 	end
-end)
+end))
 --------------------------------------------------------
 
 --------------------------------------------------------
 -- Window Switch within the Space
-switcherInSpace = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
+local switcherInSpace = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
 
 hs.hotkey.bind("alt", "tab", function()
 	switcherInSpace:next()
@@ -268,221 +275,164 @@ end)
 
 --------------------------------------------------------
 -- Window Movement
-hs.hotkey.bind({ "ctrl", "cmd", "alt" }, "H", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "ctrl", "cmd", "alt" }, "H", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.x = f.x - 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "K", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "K", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.y = f.y - 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "L", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "L", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.x = f.x + 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "J", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "J", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.y = f.y + 30
 	win:setFrame(f)
-end)
+end))
 --------------------------------------------------------
 
 --------------------------------------------------------
 -- Window Size Adjustment
-hs.hotkey.bind({ "shift", "alt", "ctrl" }, "H", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "shift", "alt", "ctrl" }, "H", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.w = f.w - 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "shift", "alt", "ctrl" }, "K", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "shift", "alt", "ctrl" }, "K", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.h = f.h - 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "shift", "alt", "ctrl" }, "L", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "shift", "alt", "ctrl" }, "L", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.w = f.w + 30
 	win:setFrame(f)
-end)
+end))
 
-hs.hotkey.bind({ "shift", "alt", "ctrl" }, "J", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "shift", "alt", "ctrl" }, "J", withFocusedWindow(function(win)
 	local f = win:frame()
 
 	f.h = f.h + 30
 	win:setFrame(f)
-end)
+end))
 --------------------------------------------------------
 
 --------------------------------------------------------
--- -- Window Layout: Full Screen
--- hs.hotkey.bind({ "alt", "ctrl" }, "return", function()
--- 	local win = hs.window.focusedWindow()
--- 	local f = win:frame()
--- 	local screen = win:screen()
--- 	local max = screen:frame()
---
--- 	saveWindowState(win, f)
--- 	f.x = max.x
--- 	f.y = max.y
--- 	f.w = max.w
--- 	f.h = max.h
--- 	win:setFrame(f, 0)
--- end)
---------------------------------------------------------
--- Window Layout: 2/3 and 1/3 Screen
+-- Window Layout: Full Screen
+hs.hotkey.bind({ "alt", "ctrl" }, "return", withFocusedWindow(function(win)
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
 
-function closeEnough(x, y)
-	if x == y or x + 1 == y or x == y + 1 then
-		return true
-	end
-	return false
-end
-
-function switchThirdsLeft(f, max)
-	if f.x == max.x and f.y == max.y and f.h == max.h then
-		if closeEnough(f.w, max.w / 3) then
-			-- 1/3 --> 2/3
-			f.w = max.w * 2 / 3
-			return
-		else
-			if closeEnough(f.w, max.w * 2 / 3) then
-				-- 2/3 --> 1/3
-				f.w = max.w / 3
-				return
-			end
-		end
-	end
+	saveWindowState(win, f)
 	f.x = max.x
 	f.y = max.y
-	f.w = max.w / 3
+	f.w = max.w
 	f.h = max.h
+	win:setFrame(f, 0)
+end))
+
+--------------------------------------------------------
+-- Window Layout: Cycle through 1/2, 1/3, and 2/3 of the screen
+local windowSizeCycle = { 1 / 2, 1 / 3, 2 / 3 }
+local frameTolerance = 2
+
+local function framesClose(actual, expected)
+	return math.abs(actual - expected) <= frameTolerance
 end
 
-function switchThirdsRight(f, max)
-	if (f.x + f.w) / 2 == (max.x + max.w) / 2 and f.y == max.y and f.h == max.h then
-		if closeEngouh(f.w, max.w / 3) then
-			-- 1/3 --> 2/3
-			f.w = max.w * 2 / 3
-			f.x = max.x + (max.w / 3)
-			return
-		else
-			if closeEngouh(f.w, max.w * 2 / 3) then
-				-- 2/3 --> 1/3
-				f.w = max.w / 3
-				f.x = max.x + (max.w * 2 / 3)
-				return
+local function nextWindowRatio(f, max, direction)
+	local isHorizontal = direction == "left" or direction == "right"
+	local isAligned
+
+	if direction == "left" then
+		isAligned = framesClose(f.x, max.x)
+			and framesClose(f.y, max.y)
+			and framesClose(f.h, max.h)
+	elseif direction == "right" then
+		isAligned = framesClose(f.x + f.w, max.x + max.w)
+			and framesClose(f.y, max.y)
+			and framesClose(f.h, max.h)
+	elseif direction == "up" then
+		isAligned = framesClose(f.y, max.y)
+			and framesClose(f.x, max.x)
+			and framesClose(f.w, max.w)
+	else
+		isAligned = framesClose(f.y + f.h, max.y + max.h)
+			and framesClose(f.x, max.x)
+			and framesClose(f.w, max.w)
+	end
+
+	if isAligned then
+		local currentSize = isHorizontal and f.w or f.h
+		local availableSize = isHorizontal and max.w or max.h
+
+		for index, ratio in ipairs(windowSizeCycle) do
+			if framesClose(currentSize, availableSize * ratio) then
+				return windowSizeCycle[(index % #windowSizeCycle) + 1]
 			end
 		end
 	end
-	f.x = max.x + (max.w * 2 / 3)
-	f.y = max.y
-	f.w = max.w / 3
-	f.h = max.h
+
+	return windowSizeCycle[1]
 end
 
-hs.hotkey.bind({ "alt", "ctrl", "shift" }, "Left", function()
-	local win = hs.window.focusedWindow()
+local function cycleWindowSize(win, direction)
 	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
+	local max = win:screen():frame()
+	local ratio = nextWindowRatio(f, max, direction)
 	saveWindowState(win, f)
-	switchThirdsLeft(f, max)
+
+	if direction == "left" or direction == "right" then
+		f.y = max.y
+		f.w = max.w * ratio
+		f.h = max.h
+		f.x = direction == "left" and max.x or max.x + max.w - f.w
+	else
+		f.x = max.x
+		f.y = direction == "up" and max.y or max.y + max.h - (max.h * ratio)
+		f.w = max.w
+		f.h = max.h * ratio
+	end
+
 	win:setFrame(f, 0)
-end)
+end
 
-hs.hotkey.bind({ "alt", "ctrl", "shift" }, "Right", function()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-	saveWindowState(win, f)
-	switchThirdsRight(f, max)
-	win:setFrame(f, 0)
-end)
+hs.hotkey.bind({ "alt", "ctrl" }, "Left", withFocusedWindow(function(win)
+	cycleWindowSize(win, "left")
+end))
 
---------------------------------------------------------
--- Window Layout: Half Screen
--- hs.hotkey.bind({"alt", "ctrl"}, "Left", function()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
---   saveWindowState(win, f)
---
---   f.x = max.x
---   f.y = max.y
---   f.w = max.w / 2
---   f.h = max.h
---   win:setFrame(f, 0)
--- end)
---
--- hs.hotkey.bind({"alt", "ctrl"}, "Right", function()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
---   saveWindowState(win, f)
---
---   f.x = max.x + (max.w / 2)
---   f.y = max.y
---   f.w = max.w / 2
---   f.h = max.h
---   win:setFrame(f, 0)
--- end)
---
--- hs.hotkey.bind({"alt", "ctrl"}, "Up", function()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
---   saveWindowState(win, f)
---
---   f.x = max.x
---   f.y = max.y
---   f.w = max.w
---   f.h = max.h / 2
---   win:setFrame(f, 0)
--- end)
---
--- hs.hotkey.bind({"alt", "ctrl"}, "Down", function()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
---   saveWindowState(win, f)
---
---   f.x = max.x
---   f.y = max.y + (max.h / 2)
---   f.w = max.w
---   f.h = max.h / 2
---   win:setFrame(f, 0)
--- end)
+hs.hotkey.bind({ "alt", "ctrl" }, "Right", withFocusedWindow(function(win)
+	cycleWindowSize(win, "right")
+end))
 
-hs.hotkey.bind({ "alt", "ctrl" }, "C", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "Up", withFocusedWindow(function(win)
+	cycleWindowSize(win, "up")
+end))
+
+hs.hotkey.bind({ "alt", "ctrl" }, "Down", withFocusedWindow(function(win)
+	cycleWindowSize(win, "down")
+end))
+
+hs.hotkey.bind({ "alt", "ctrl" }, "C", withFocusedWindow(function(win)
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
@@ -493,13 +443,12 @@ hs.hotkey.bind({ "alt", "ctrl" }, "C", function()
 	f.w = max.w * 0.8
 	f.h = max.h * 0.8
 	win:setFrame(f, 0)
-end)
+end))
 --------------------------------------------------------
 
 --------------------------------------------------------
 -- Window Layout: Quater Screen
-hs.hotkey.bind({ "alt", "ctrl" }, "I", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "I", withFocusedWindow(function(win)
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
@@ -510,10 +459,9 @@ hs.hotkey.bind({ "alt", "ctrl" }, "I", function()
 	f.w = max.w / 2
 	f.h = max.h / 2
 	win:setFrame(f, 0)
-end)
+end))
 
-hs.hotkey.bind({ "alt", "ctrl" }, "U", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "U", withFocusedWindow(function(win)
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
@@ -524,10 +472,9 @@ hs.hotkey.bind({ "alt", "ctrl" }, "U", function()
 	f.w = max.w / 2
 	f.h = max.h / 2
 	win:setFrame(f, 0)
-end)
+end))
 
-hs.hotkey.bind({ "alt", "ctrl" }, "K", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "K", withFocusedWindow(function(win)
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
@@ -538,10 +485,9 @@ hs.hotkey.bind({ "alt", "ctrl" }, "K", function()
 	f.w = max.w / 2
 	f.h = max.h / 2
 	win:setFrame(f, 0)
-end)
+end))
 
-hs.hotkey.bind({ "alt", "ctrl" }, "J", function()
-	local win = hs.window.focusedWindow()
+hs.hotkey.bind({ "alt", "ctrl" }, "J", withFocusedWindow(function(win)
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
@@ -552,5 +498,5 @@ hs.hotkey.bind({ "alt", "ctrl" }, "J", function()
 	f.w = max.w / 2
 	f.h = max.h / 2
 	win:setFrame(f, 0)
-end)
+end))
 --------------------------------------------------------
