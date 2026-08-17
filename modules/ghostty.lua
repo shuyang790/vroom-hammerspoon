@@ -42,6 +42,19 @@ local function ghosttySmartSplitDown()
 	ghosttySmartAction("new_split:down", "esc:[5;30014~", "smart split down")
 end
 
+local smartDigitActions = {
+	{ key = "0", ghosttyAction = "reset_font_size", tmuxAction = "esc:[5;30020~" },
+	{ key = "1", ghosttyAction = "goto_tab:1", tmuxAction = "esc:[5;30021~" },
+	{ key = "2", ghosttyAction = "goto_tab:2", tmuxAction = "esc:[5;30022~" },
+	{ key = "3", ghosttyAction = "goto_tab:3", tmuxAction = "esc:[5;30023~" },
+	{ key = "4", ghosttyAction = "goto_tab:4", tmuxAction = "esc:[5;30024~" },
+	{ key = "5", ghosttyAction = "goto_tab:5", tmuxAction = "esc:[5;30025~" },
+	{ key = "6", ghosttyAction = "goto_tab:6", tmuxAction = "esc:[5;30026~" },
+	{ key = "7", ghosttyAction = "goto_tab:7", tmuxAction = "esc:[5;30027~" },
+	{ key = "8", ghosttyAction = "goto_tab:8", tmuxAction = "esc:[5;30028~" },
+	{ key = "9", ghosttyAction = "last_tab", tmuxAction = "esc:[5;30029~" },
+}
+
 local function ghosttyIsFrontmost()
 	local app = hs.application.frontmostApplication()
 	return app and app:bundleID() == ghosttyBundleID
@@ -64,6 +77,16 @@ _GhosttySmartHotkeys = {
 	hs.hotkey.new({ "cmd" }, "d", ghosttySmartSplitRight),
 	hs.hotkey.new({ "cmd", "shift" }, "d", ghosttySmartSplitDown),
 }
+
+for _, action in ipairs(smartDigitActions) do
+	table.insert(
+		_GhosttySmartHotkeys,
+		hs.hotkey.new({ "cmd" }, action.key, function()
+			ghosttySmartAction(action.ghosttyAction, action.tmuxAction, "smart tab " .. action.key)
+		end)
+	)
+end
+
 _GhosttySmartWatcher = hs.application.watcher.new(function(_, eventType)
 	if
 		eventType == hs.application.watcher.activated
